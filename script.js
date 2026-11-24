@@ -1,82 +1,3 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dame gegen den Computer</title>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: linear-gradient(160deg, #1e2a24, #2c3e2e);
-    color: #f3ede0; display: flex; flex-direction: column; align-items: center;
-    padding: 16px;
-  }
-  h1 { font-size: 2rem; margin: 8px 0 4px; letter-spacing: 2px; }
-  .info { display: flex; gap: 12px; align-items: center; margin: 8px 0 12px; flex-wrap: wrap; justify-content: center; }
-  #status { background: #0008; padding: 8px 14px; border-radius: 20px; font-weight: 600; }
-  .diff { display: flex; background: #0006; border-radius: 20px; padding: 4px; gap: 4px; }
-  .diff button {
-    background: transparent; color: #e8d4a8; padding: 6px 14px; font-size: 0.85rem;
-  }
-  .diff button:hover { background: #ffffff22; }
-  .diff button.active { background: #d8a24a; color: #241a08; }
-  button {
-    background: #d8a24a; border: none; color: #241a08; font-weight: 700;
-    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
-  }
-  button:hover { background: #e7b661; }
-  #board {
-    position: relative;
-    width: min(92vw, 520px); aspect-ratio: 1/1;
-    display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr);
-    border: 8px solid #4a3520; border-radius: 8px; overflow: hidden;
-    box-shadow: 0 12px 40px #000a;
-  }
-  .cell { position: relative; display: flex; align-items: center; justify-content: center; }
-  .cell.light { background: #e8d4a8; }
-  .cell.dark  { background: #8b5e3c; }
-  .piece {
-    position: absolute; top: 11%; left: 11%;
-    width: 78%; aspect-ratio: 1/1; border-radius: 50%;
-    box-shadow: 0 3px 6px #0007, inset 0 2px 3px #fff5;
-  }
-  .piece.white { background: radial-gradient(circle at 35% 30%, #fff, #d9d2c4 70%); }
-  .piece.black { background: radial-gradient(circle at 35% 30%, #5a5a5a, #1c1c1c 70%); }
-  .piece.king::after {
-    content: "★"; position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%); font-size: 1.3rem; color: #f0c34a;
-    text-shadow: 0 1px 2px #000;
-  }
-  .cell.selected { outline: 3px solid #ffe08a; outline-offset: -3px; }
-  .cell.legal::after {
-    content: ""; width: 26%; aspect-ratio: 1/1; border-radius: 50%;
-    background: #2b6e2b; opacity: .85;
-  }
-  .cell.legal.capture::after {
-    width: 88%; height: 88%; border-radius: 50%;
-    background: transparent; border: 4px solid #b33939;
-  }
-  .cell.lastmove { box-shadow: inset 0 0 0 4px #ffe08a; }
-  .hint { margin-top: 14px; text-align: center; font-size: 0.9rem; opacity: .85; max-width: 520px; }
-</style>
-</head>
-<body>
-<h1>♞ Dame ♞</h1>
-<div class="info">
-  <span id="status">Ihr Zug (Weiß)</span>
-  <div class="diff" id="diff">
-    <button data-d="leicht" class="active">Leicht</button>
-    <button data-d="mittel">Mittel</button>
-    <button data-d="schwer">Schwer</button>
-  </div>
-  <button id="restart">Neustart</button>
-</div>
-<div id="board"></div>
-<p class="hint">Sie spielen <b>Weiß</b> (unten), der Computer <b>Schwarz</b> (oben). Springen ist Pflicht, wenn möglich. Der <b>König/Dame darf beliebig weit diagonal ziehen</b> (über leere Felder) und auch beliebig weit springen. Erreicht ein Spielstein die gegenüberliegende Reihe, wird er zum König (★).</p>
-
-<script>
 const boardEl = document.getElementById('board');
 const statusEl = document.getElementById('status');
 const restartBtn = document.getElementById('restart');
@@ -497,10 +418,16 @@ boardEl.addEventListener('click', (e) => {
   deselect(); render();
 });
 
-document.querySelectorAll('#diff button').forEach(btn => btn.addEventListener('click', () => {
-  difficulty = btn.dataset.d;
-  document.querySelectorAll('#diff button').forEach(b => b.classList.toggle('active', b === btn));
-}));
+const diffSlider = document.getElementById('diffSlider');
+const diffLabel = document.getElementById('diffLabel');
+const diffLevels = ['leicht', 'mittel', 'schwer'];
+const diffNames = ['Leicht', 'Mittel', 'Schwer'];
+diffSlider.addEventListener('input', () => {
+  const i = +diffSlider.value;
+  difficulty = diffLevels[i];
+  diffLabel.textContent = diffNames[i];
+  document.querySelectorAll('.diff-tick').forEach((t, j) => t.classList.toggle('active', j === i));
+});
 
 restartBtn.addEventListener('click', () => {
   animGen++;
@@ -513,6 +440,3 @@ restartBtn.addEventListener('click', () => {
 
 board = initialBoard();
 render();
-</script>
-</body>
-</html>

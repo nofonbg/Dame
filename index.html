@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dame gegen den Computer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Dame</h1>
+  <p class="subtitle">Taktik gegen den Computer</p>
+</header>
+<div class="info">
+  <span id="status">Ihr Zug (Weiß)</span>
+  <div class="diff" id="diff">
+    <span id="diffLabel">Leicht</span>
+    <input type="range" id="diffSlider" min="0" max="2" step="1" value="0" aria-label="Schwierigkeit">
+    <div class="diff-ticks">
+      <span class="diff-tick active">Leicht</span>
+      <span class="diff-tick">Mittel</span>
+      <span class="diff-tick">Schwer</span>
+    </div>
+  </div>
+  <button id="restart">Neustart</button>
+</div>
+<main class="game-layout">
+<div id="board"></div>
+<section class="rules">
+  <div class="rules-grid">
+    <div class="rule">
+      <span class="icon">🎯</span>
+      <h3>Ziehen</h3>
+      <p>Sie spielen <b>Weiß</b> (unten), der Computer <b>Schwarz</b> (oben). Spielsteine ziehen 1 Feld diagonal vorwärts.</p>
+    </div>
+    <div class="rule">
+      <span class="icon">⚡</span>
+      <h3>Springen</h3>
+      <p>Springen ist Pflicht, sobald es möglich ist. Über gegnerische Figuren hinweg; Mehrfachsprünge gelten als ein Zug.</p>
+    </div>
+    <div class="rule">
+      <span class="icon">★</span>
+      <h3>König</h3>
+      <p>Erreicht ein Spielstein die gegenüberliegende Reihe, wird er zum König (★) und darf beliebig weit diagonal ziehen und springen.</p>
+    </div>
+    <div class="rule">
+      <span class="icon">🏆</span>
+      <h3>Sieg</h3>
+      <p>Sie gewinnen, wenn alle schwarzen Figuren verloren sind. Der Computer gewinnt, wenn Sie keinen Zug mehr haben.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
