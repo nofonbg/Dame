@@ -1,7 +1,7 @@
 # Dame gegen Computer
 
 <a href="/nofonbg/dame/blob/main/LICENSE"><img src="https://img.shields.io/badge/Lizenz-CC%20BY--NC--SA%204.0-lightgrey?left-color=3c3c3c&logo=creativecommons&logoColor=white&color=black" alt="Lizenz: CC BY-NC-SA 4.0" style="max-width: 100%;"></a>
-<a href="https://nofonbg.github.io/dame/" rel="nofollow"><img src="https://img.shields.io/badge/Live--Demo-nofonbg.github.io-2563eb?left-color=333333&logo=githubpages&logoColor=white" alt="Live-Demo" style="max-width: 100%;"></a>
+<a href="https://nofonbg.github.io/Dame/" rel="nofollow"><img src="https://img.shields.io/badge/Live--Demo-nofonbg.github.io-2563eb?left-color=333333&logo=githubpages&logoColor=white" alt="Live-Demo" style="max-width: 100%;"></a>
 
 Ein klassisches **Dame-Spiel** im Browser – Sie spielen **Weiß** (unten), der Computer spielt **Schwarz** (oben).
 
@@ -26,7 +26,7 @@ Erstellt als Studie für die Zuammenarbeit von [thinkingmachines/inkling-2-mini
 
 ## Live-Demo
 
-👉 https://nofonbg.github.io/dame
+👉 https://nofonbg.github.io/Dame
 
 ## Lokal starten
 
